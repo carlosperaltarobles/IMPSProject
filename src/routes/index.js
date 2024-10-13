@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const estudianteRespository = require('../repositories/EstudianteRepository');
+import estudianteRespository from '../repositories/EstudianteRepository.js';
 
 router.get('/', async(req, res) => {
     const lstEstudiantes = await estudianteRespository.obtenerEstudiantes();
@@ -8,4 +8,4 @@ router.get('/', async(req, res) => {
     res.send('Bienvenido al laboratorio')
 });
 
-module.exports = router;
+export default router;

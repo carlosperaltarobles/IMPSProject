@@ -1,7 +1,7 @@
-const pool = require('../config/databaseController');
+import pool from '../config/databaseController.js';
 
-module.exports = {
-    obtenerEstudiantes: async() => {
+const obtenerEstudiantes = {
+    obtenerEstudiantes: async () => {
         try {
             const result = await pool.query('SELECT * FROM estudiantes');
             return result;
@@ -9,4 +9,6 @@ module.exports = {
             console.error('Ocurrio un problema al consultar los estudiante', error);
         }
     }
-}
+};
+
+export default obtenerEstudiantes;

@@ -1,12 +1,13 @@
-const mysql = require('mysql2');
-const { promisify } = require('util');
-const { database } = require('/keys');
-const { CONSTANTS } = require('../utils/utils');
+import mysql from 'mysql2';
+import { promisify } from 'util';
+import  config  from './keys.js';
+import CONSTANTS  from '../utils/utils.js';
 
-const pool = mysql.createPool(database);
+const pool = mysql.createPool(config.database);
 
 pool.getConnection((error, conexion) => {
     if (error) {
+        console.log(error , 'error del controlador');
         switch (error.code) {
             case CONSTANTS.PROTOCOL_CONNECTION_LOST:
                 console.error('DATABASE CONNECTION WAS CLOSED')
@@ -33,4 +34,4 @@ pool.getConnection((error, conexion) => {
 });
 
 pool.query = promisify(pool.query);
-module.exports = pool;
+export default pool;
